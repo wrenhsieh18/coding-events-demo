@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+
+<table>
+    <tr>
+        <th th:fragment="tableHeader">Address</th>
+    </tr>
+    <tr th:fragment="tableHeader" th:each="address :: ${addresses}" th:text="${address}"></tr>
+</table>
+
+</body>
+</html>
