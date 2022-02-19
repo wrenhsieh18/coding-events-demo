@@ -1,6 +1,11 @@
 package org.launchcode.codingevents.models;
 
+import jdk.jfr.BooleanFlag;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.validation.constraints.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -22,16 +27,80 @@ public class Event {
     @Email(message = "Invalid email. Try again.")
     private String contactEmail;
 
-    public Event(String name, String description, String contactEmail) {
+    @NotBlank(message = "Address is required!")
+    private String address;
+
+    //@AssertTrue(message = "Invalid!")
+    @BooleanFlag
+    private boolean registrationRequired;
+
+    @Min(1)
+    private int numOfAttendees;
+
+    @Future(message = "Date must be future.")
+    @DateTimeFormat(pattern = "MM/dd/yy")
+    private Date eventDate;
+
+    private String displayDate;
+
+
+    public Event(String name, String description, String contactEmail, String address, boolean registrationRequired, int numOfAttendees, Date eventDate) {
+        this.id = nextId;
+        nextId++;
+
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
-        this.id = nextId;
-        nextId++;
+        this.address = address;
+        this.registrationRequired = registrationRequired;
+        this.numOfAttendees = numOfAttendees;
+        this.eventDate = eventDate;
+        this.displayDate = new SimpleDateFormat("MM/dd/yy").format(eventDate);
+
     }
 
     public Event() {
+    }
 
+    public String getDisplayDate() {
+        return displayDate;
+    }
+
+    public void setDisplayDate(Date eventDate) {
+        this.displayDate = new SimpleDateFormat("MM/dd/yy").format(eventDate);
+    }
+
+    public Date getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(Date eventDate) {
+        this.displayDate = new SimpleDateFormat("MM/dd/yy").format(eventDate);
+        this.eventDate = eventDate;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public boolean isRegistrationRequired() {
+        return registrationRequired;
+    }
+
+    public void setRegistrationRequired(boolean registrationRequired) {
+        this.registrationRequired = registrationRequired;
+    }
+
+    public Integer getNumOfAttendees() {
+        return numOfAttendees;
+    }
+
+    public void setNumOfAttendees(Integer numOfAttendees) {
+        this.numOfAttendees = numOfAttendees;
     }
 
     public String getContactEmail() {
