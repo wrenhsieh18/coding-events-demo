@@ -45,9 +45,7 @@ public class Event {
 
 
     public Event(String name, String description, String contactEmail, String address, boolean registrationRequired, int numOfAttendees, Date eventDate) {
-        this.id = nextId;
-        nextId++;
-
+        this();
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
@@ -60,6 +58,8 @@ public class Event {
     }
 
     public Event() {
+        nextId++;
+        this.id = nextId;
     }
 
     public String getDisplayDate() {
