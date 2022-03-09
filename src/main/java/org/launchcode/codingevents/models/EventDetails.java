@@ -12,14 +12,14 @@ import javax.validation.constraints.Size;
 @Entity
 public class EventDetails extends AbstractEntity {
 
-    @Size(max = 500, message = "Description too long!")
+    @Size(max = 500, message = "Description too long.")
     private String description;
 
-    @NotBlank(message = "Email is required")
+    @NotBlank(message = "Email is required.")
     @Email(message = "Invalid email. Try again.")
     private String contactEmail;
 
-    public EventDetails(@Size(max = 500, message = "Description too long!") String description, @NotBlank(message = "Email is required") @Email(message = "Invalid email. Try again.") String contactEmail) {
+    public EventDetails(@Size(max = 500, message = "Description too long.") String description, @NotBlank(message = "Email is required.") @Email(message = "Invalid email. Try again.") String contactEmail) {
         this.description = description;
         this.contactEmail = contactEmail;
     }

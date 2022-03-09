@@ -85,4 +85,13 @@ public class EventController {
         return "redirect:";
     }
 
+    @GetMapping("detail")
+    public String displayEventDetails(@RequestParam Integer eventId, Model model) {
+        Optional<Event> result = eventRepository.findById(eventId);
+        Event selectedEvent = result.get();
+        model.addAttribute("title", selectedEvent.getName() + "'s Details");
+        model.addAttribute("event", selectedEvent);
+        return "events/detail";
+    }
+
 }
