@@ -38,4 +38,8 @@ public class Tag extends AbstractEntity {
     public void addEvent (Event event) {
         this.events.add(event);
     }
+
+    public String getDisplayName() {
+        return "#"+name+" ";
+    }
 }
